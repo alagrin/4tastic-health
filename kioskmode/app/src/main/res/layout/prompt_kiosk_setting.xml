@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingTop="20dp"
+    android:paddingLeft="25dp"
+    android:paddingRight="25dp"
+    android:paddingBottom="10dp"
+    android:id="@+id/kiosk_config_group"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/dtxtKioskSetting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/kiosk_setting"
+        android:textColor="@android:color/black" />
+    <CheckBox
+        android:id="@+id/chkSettingsChange"
+        android:layout_below="@id/dtxtKioskSetting"
+        android:text="@string/allow_settings_changes"
+        android:checked="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:id="@+id/chkAllowStatusBar"
+        android:layout_below="@id/chkSettingsChange"
+        android:text="@string/allow_status_bar"
+        android:checked="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:id="@+id/chkStatusBarExpansion"
+        android:layout_below="@id/chkAllowStatusBar"
+        android:checked="true"
+        android:text="@string/allow_status_bar_expansion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:id="@+id/chkAllowSystemBar"
+        android:layout_below="@id/chkStatusBarExpansion"
+        android:text="@string/allow_system_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:id="@+id/chkAllowTaskManager"
+        android:layout_below="@id/chkAllowSystemBar"
+        android:text="@string/allow_task_manager"
+        android:checked="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:id="@+id/chkAllowHomekey"
+        android:layout_below="@id/chkAllowTaskManager"
+        android:text="@string/allow_home_key"
+        android:checked="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:id="@+id/chkAllowAirCommand"
+        android:layout_below="@id/chkAllowHomekey"
+        android:text="@string/allow_air_command"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:id="@+id/chkAllowAirview"
+        android:layout_below="@id/chkAllowAirCommand"
+        android:text="@string/allow_air_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:id="@+id/chkAllowMultiwindow"
+        android:layout_below="@id/chkAllowAirview"
+        android:text="@string/allow_multiwindow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:id="@+id/chkAllowSmartClip"
+        android:layout_below="@id/chkAllowMultiwindow"
+        android:text="@string/allow_smart_clip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:id="@+id/chkAllowNavBar"
+        android:layout_below="@id/chkAllowSmartClip"
+        android:text="@string/allow_nav_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:id="@+id/chkWipeRecentTasks"
+        android:layout_below="@id/chkAllowNavBar"
+        android:text="@string/wipe_recent_tasks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:id="@+id/chkClearNotifications"
+        android:layout_below="@id/chkWipeRecentTasks"
+        android:text="@string/clear_notifications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

@@ -1,0 +1,95 @@
+<resources>
+    <string name="app_name">Knox Kiosk Mode</string>
+
+    <string name="enterprise_device_admin">Knox Kiosk Mode</string>
+    <string name="enterprise_device_admin_description">DeviceAdmin class</string>
+    <string name="activate_admin">Activate Admin</string>
+    <string name="deactivate_admin">Deactivate Admin</string>
+    <string name="activate_license">Activate License</string>
+    <string name="activate_kpe">Activate License</string>
+    <string name="grant_permissions">Grant Permissions</string>
+
+    <!-- UI elements -->
+    <string name="license_progress">Activating KPE license...</string>
+    <string name="kpe_license_progress">Activating KPE license...</string>
+    <string name="permissions_failed">Failed to grant runtime permissions %1$s to package</string>
+    <string name="permissions_granted">Granted runtime permissions %1$s</string>
+    <string name="admin_cancelled">Device admin activation cancelled</string>
+    <string name="admin_activated">Device administrator activated</string>
+    <string name="activating_admin">Activating device administrator...</string>
+    <string name="deactivating_admin">Deactivating device administrator... </string>
+    <string name="permission">com.samsung.android.knox.permission.KNOX_KIOSK_MODE</string>
+    <string name="permission_2">com.samsung.android.knox.permission.KNOX_APP_MGMT</string>
+    <string name="permission_3">com.android.launcher.permission.INSTALL_SHORTCUT</string>
+    <string name="toggle_kiosk">Toggle Default Kiosk</string>
+    <string name="toggle_kiosk_settings">Toggle Custom Kiosk</string>
+    <string name="added_app_to_kiosk">Added sample app to Kiosk home screen.</string>
+    <string name="failed_add_app_to_kiosk">Failed to add app to Kiosk home screen.</string>
+    <string name="enter_default_kiosk">Enter Default Kiosk Mode</string>
+    <string name="enter_custom_kiosk">Enter Custom Kiosk Mode</string>
+    <string name="leave_default_kiosk">Leave Default Kiosk Mode</string>
+    <string name="leave_custom_kiosk">Leave Custom Kiosk Mode</string>
+    <string name="leaving_kiosk">Leaving Kiosk Mode.</string>
+    <string name="entering_kiosk">Entering Kiosk Mode.</string>
+    <string name="configure_kiosk_setting">Configure Kiosk Setting</string>
+    <string name="option_confirm">Confirm</string>
+    <string name="option_cancel">Cancel</string>
+    <string name="removed_app_from_kiosk">Removed app from Kiosk home screen.</string>
+    <string name="failed_remove_app_kiosk">Failed to remove app from Kiosk home screen.</string>
+
+    <!-- KioskSetting Prompts -->
+    <string name="kiosk_setting">Kiosk Settings</string>
+    <string name="allow_settings_changes">Allow Settings changes</string>
+    <string name="allow_status_bar_expansion">Allow Status Bar expansion</string>
+    <string name="allow_status_bar">Allow Status Bar</string>
+    <string name="allow_system_bar">Allow System Bar</string>
+    <string name="allow_task_manager">Allow Taskmanager</string>
+    <string name="allow_home_key">Allow Home Key</string>
+    <string name="allow_air_command">Allow Air Command</string>
+    <string name="allow_air_view">Allow Air View</string>
+    <string name="allow_multiwindow">Allow Multiwindow</string>
+    <string name="allow_smart_clip">Allow Smartclip</string>
+    <string name="allow_nav_bar">Allow Navigation Bar</string>
+    <string name="wipe_recent_tasks">Wipe Recent Tasks</string>
+    <string name="clear_notifications">Clear Notifications</string>
+
+    <!-- License activation messages -->
+    <string name="no_intent">License activation intent is not available</string>
+    <string name="no_intent_action">License activation intent action is not available</string>
+    <string name="elm_activated_succesfully">ELM activated successfully</string>
+    <string name="kpe_activated_successfully">KPE activated successfully</string>
+
+    <!-- ELM License Error Codes -->
+    <string name="err_kpe_internal">KPE: Internal error</string>
+    <string name="err_kpe_internal_server">KPE: Internal server error</string>
+    <string name="err_kpe_licence_invalid_license">KPE: Invalid license</string>
+    <string name="err_kpe_invalid_package_name">KPE: Invalid package name</string>
+    <string name="err_kpe_licence_terminated">KPE: License terminated</string>
+    <string name="err_kpe_network_disconnected">KPE: Network disconnected</string>
+    <string name="err_kpe_network_general">KPE: Network general error</string>
+    <string name="err_kpe_unknown">KPE: Error unknown</string>
+    <string name="err_kpe_code_unknown">KPE: Error code unknown %1$s, status %2$s</string>
+    <string name="err_kpe_not_current_date">KPE: Not current date</string>
+    <string name="err_kpe_sig_mismatch">KPE: Caller package signature mismatch</string>
+    <string name="err_kpe_ver_code_mismatch">KPE: Caller package version code mismatch</string>
+    <string name="err_kpe_null_params">KPE: NULL params</string>
+    <string name="err_kpe_user_disagrees_license_agreement">KPE: User disagrees EULA</string>
+
+    <!-- API level -->
+    <string name="api_level_message">This device does not support the new Knox SDK and Samsung
+        Knox Licence (SKL)
+        licensing scheme. API level %1$d detected.
+        Requires
+        level %2$d
+        .</string>
+    <string name="api_level_notice">App Requirement</string>
+
+    <!-- Kiosk Error Codes -->
+    <string name="activated_kiosk_successfully">Activated Kiosk Mode successfully.</string>
+    <string name="exited_kiosk_successfully">Deactivated Kiosk Mode successfully.</string>
+    <string name="kiosk_already_enabled">Kiosk Mode Error: Kiosk Mode already enabled.</string>
+    <string name="kiosk_enabled_by_other_admin">Kiosk Mode Error: Kiosk Mode enabled by other administrator.</string>
+    <string name="kiosk_package_not_found">Kiosk Mode Error: Kiosk Mode package not found. </string>
+    <string name="kiosk_error_busy">Kiosk Mode Error: Kiosk Mode service is busy with other request.</string>
+    <string name="kiosk_unknown_error">Kiosk Mode Error: Unknown Error. </string>
+</resources>
