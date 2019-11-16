@@ -24,6 +24,7 @@ import com.samsung.android.knox.application.ApplicationPolicy;
 import com.samsung.android.knox.kiosk.KioskMode;
 import com.samsung.android.knox.kiosk.KioskSetting;
 import com.samsung.android.knox.license.KnoxEnterpriseLicenseManager;
+import com.samsung.knox.example.kioskmode.ui.login.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private DevicePolicyManager mDPM;
     private SampleKioskReceiver mSampleKioskReceiver;
     private Utils mUtils;
+    private Button mToggleLogViewBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
         Button activateKPEBtn = (Button) findViewById(R.id.activateLicenceBtn);
         Button grantPermissonsBtn = (Button) findViewById(R.id.grantPermissionsBtn);
         mToggleDefaultKioskBtn = (Button) findViewById(R.id.toggleDefaultKioskBtn);
-        mToggleCustomKioskBtn = (Button) findViewById(R.id.toggleCustomKioskBtn) ;
+        mToggleCustomKioskBtn = (Button) findViewById(R.id.toggleCustomKioskButton) ;
+        mToggleLogViewBtn = (Button) findViewById(R.id.toggleLogViewBtn);
         mDeviceAdmin = new ComponentName(MainActivity.this, SampleAdminReceiver.class);
         mDPM = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
         mUtils = new Utils(logView, TAG);
@@ -101,6 +104,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 promptCustomKioskSetting();
             }
+        });
+        mToggleLogViewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {launchLoginView();}
         });
 
         mSampleKioskReceiver = new SampleKioskReceiver();
@@ -394,5 +401,12 @@ public class MainActivity extends AppCompatActivity {
         } catch (SecurityException e) {
             mUtils.processException(e, TAG);
         }
+    }
+
+    public void launchLoginView() {
+//        LoginActivity activity = new LoginActivity();
+        mUtils.log("launched login activity");
+        Intent i = new Intent(this, LoginActivity.class);
+        startActivity(i); // brings up the second activity
     }
 }

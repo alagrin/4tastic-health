@@ -60,16 +60,26 @@
                 android:layout_alignStart="@id/toggleAdminBtn"
                 android:layout_below="@id/grantPermissionsBtn"
                 android:text="@string/toggle_kiosk"/>
+            <Button
+                android:id="@+id/toggleLogViewBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/toggleAdminBtn"
+                android:layout_below="@id/toggleDefaultKioskBtn"
+                android:width="200dp"
+                android:text="@string/login_view" />
 
             <Button
-                android:id="@+id/toggleCustomKioskBtn"
-                android:layout_width="200dp"
+                android:id="@+id/toggleCustomKioskButton"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/toggleDefaultKioskBtn"
-                android:layout_alignStart="@id/toggleAdminBtn"
-                android:text="@string/toggle_kiosk_settings" />
-
+                android:layout_below="@id/toggleLogViewBtn"
+                android:layout_alignStart="@id/toggleLogViewBtn"
+                android:width="200dp"
+                android:text="@string/toggle_custom_kiosk" />
 
         </RelativeLayout>
     </ScrollView>
+
+
 </RelativeLayout>

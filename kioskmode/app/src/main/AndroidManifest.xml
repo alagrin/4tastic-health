@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.samsung.knox.example.kioskmode">
 
     <permission
@@ -8,9 +9,9 @@
         android:protectionLevel="signature" />
 
     <uses-permission android:name="com.example.supportlibclient.SUPPORT_PERMISSION" />
-    <uses-permission android:name="com.samsung.android.knox.permission.KNOX_KIOSK_MODE"/>
-    <uses-permission android:name="com.samsung.android.knox.permission.KNOX_APP_MGMT"/>
-    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
+    <uses-permission android:name="com.samsung.android.knox.permission.KNOX_KIOSK_MODE" />
+    <uses-permission android:name="com.samsung.android.knox.permission.KNOX_APP_MGMT" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
 
     <application
         android:allowBackup="true"
@@ -18,35 +19,37 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:label="@string/title_activity_login" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <receiver
-            android:name="com.samsung.knox.example.kioskmode.SampleAdminReceiver"
+            android:name=".SampleAdminReceiver"
             android:description="@string/enterprise_device_admin_description"
             android:label="@string/enterprise_device_admin"
-            android:permission="android.permission.BIND_DEVICE_ADMIN" >
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
             <meta-data
                 android:name="android.app.device_admin"
                 android:resource="@xml/device_admin_receiver" />
+
             <intent-filter>
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
             </intent-filter>
-        </receiver>
-
-        <!-- Activate License TODO Provide receiver for Knox license activation results -->
-        <receiver android:name="com.samsung.knox.example.kioskmode.SampleLicenseReceiver" >
+        </receiver> <!-- Activate License TODO Provide receiver for Knox license activation results -->
+        <receiver android:name=".SampleLicenseReceiver">
             <intent-filter>
                 <action android:name="com.samsung.android.knox.intent.action.LICENSE_STATUS" />
             </intent-filter>
         </receiver>
-
     </application>
 
 </manifest>
