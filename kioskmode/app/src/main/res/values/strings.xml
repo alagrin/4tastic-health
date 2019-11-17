@@ -103,4 +103,5 @@
     <string name="login_failed">"Login failed"</string>
     <string name="login_view">login view</string>
     <string name="toggle_custom_kiosk">Toggle Custom Kiosk</string>
+    <string name="date_time">Date/Time</string>
 </resources>

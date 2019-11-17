@@ -78,6 +78,15 @@
                 android:width="200dp"
                 android:text="@string/toggle_custom_kiosk" />
 
+            <Button
+                android:id="@+id/toggleDateTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/toggleCustomKioskButton"
+                android:layout_alignStart="@id/toggleCustomKioskButton"
+                android:width="200dp"
+                android:text="@string/date_time" />
+
         </RelativeLayout>
     </ScrollView>
 
