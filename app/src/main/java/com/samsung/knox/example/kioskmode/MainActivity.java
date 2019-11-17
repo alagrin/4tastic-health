@@ -21,12 +21,16 @@ import android.widget.TextView;
 import com.samsung.android.knox.AppIdentity;
 import com.samsung.android.knox.EnterpriseDeviceManager;
 import com.samsung.android.knox.application.ApplicationPolicy;
+import com.samsung.android.knox.datetime.DateTimePolicy;
 import com.samsung.android.knox.kiosk.KioskMode;
 import com.samsung.android.knox.kiosk.KioskSetting;
 import com.samsung.android.knox.license.KnoxEnterpriseLicenseManager;
 import com.samsung.knox.example.kioskmode.ui.login.LoginActivity;
+import com.samsung.knox.example.kioskmode.DateTime;
 
 import java.util.ArrayList;
+
+import java.util.Date;
 import java.util.List;
 
 import static com.samsung.android.knox.application.ApplicationPolicy.PERMISSION_POLICY_STATE_GRANT;
@@ -55,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     private SampleKioskReceiver mSampleKioskReceiver;
     private Utils mUtils;
     private Button mToggleLogViewBtn;
+    private Button mToggleDateTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         mToggleDefaultKioskBtn = (Button) findViewById(R.id.toggleDefaultKioskBtn);
         mToggleCustomKioskBtn = (Button) findViewById(R.id.toggleCustomKioskButton) ;
         mToggleLogViewBtn = (Button) findViewById(R.id.toggleLogViewBtn);
+        mToggleDateTime = (Button) findViewById(R.id.toggleDateTime);
         mDeviceAdmin = new ComponentName(MainActivity.this, SampleAdminReceiver.class);
         mDPM = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
         mUtils = new Utils(logView, TAG);
@@ -108,6 +114,10 @@ public class MainActivity extends AppCompatActivity {
         mToggleLogViewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {launchLoginView();}
+        });
+        mToggleDateTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {processTimeData();}
         });
 
         mSampleKioskReceiver = new SampleKioskReceiver();
@@ -404,9 +414,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void launchLoginView() {
-//        LoginActivity activity = new LoginActivity();
         mUtils.log("launched login activity");
         Intent i = new Intent(this, LoginActivity.class);
         startActivity(i); // brings up the second activity
     }
+
+    public void processTimeData() {
+        EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(this.getApplicationContext());
+        DateTimePolicy policy = edm.getDateTimePolicy();
+        Date date = policy.getDateTime();
+        String test = date.toString();
+        mUtils.log(test);
+    }
+
 }
