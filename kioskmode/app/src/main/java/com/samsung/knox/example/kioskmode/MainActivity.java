@@ -25,6 +25,8 @@ import com.samsung.android.knox.datetime.DateTimePolicy;
 import com.samsung.android.knox.kiosk.KioskMode;
 import com.samsung.android.knox.kiosk.KioskSetting;
 import com.samsung.android.knox.license.KnoxEnterpriseLicenseManager;
+import com.samsung.android.knox.location.LatLongPoint;
+import com.samsung.android.knox.location.LocationPolicy;
 import com.samsung.knox.example.kioskmode.ui.login.LoginActivity;
 import com.samsung.knox.example.kioskmode.DateTime;
 
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
     private Utils mUtils;
     private Button mToggleLogViewBtn;
     private Button mToggleDateTime;
+    private Button mToggleLocationBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         mToggleCustomKioskBtn = (Button) findViewById(R.id.toggleCustomKioskButton) ;
         mToggleLogViewBtn = (Button) findViewById(R.id.toggleLogViewBtn);
         mToggleDateTime = (Button) findViewById(R.id.toggleDateTime);
+        mToggleLocationBtn = (Button) findViewById(R.id.toggleLocation);
         mDeviceAdmin = new ComponentName(MainActivity.this, SampleAdminReceiver.class);
         mDPM = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
         mUtils = new Utils(logView, TAG);
@@ -425,6 +429,14 @@ public class MainActivity extends AppCompatActivity {
         Date date = policy.getDateTime();
         String test = date.toString();
         mUtils.log(test);
+    }
+
+    public void processLocation(){
+        EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(this.getApplicationContext());
+        LocationPolicy policy = edm.getLocationPolicy();
+        String test = policy.toString();
+        mUtils.log(test);
+
     }
 
 }
