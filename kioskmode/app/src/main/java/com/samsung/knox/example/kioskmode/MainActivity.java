@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.nfc.NfcAdapter;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
@@ -483,6 +484,11 @@ public class MainActivity extends AppCompatActivity {
         NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this);
         String s = adapter.toString();
         mUtils.log(s);
+
+        //Intent intent = getIntent();
+        //Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+        //byte[] b = tag.getId();
+        //mUtils.log(tag.toString());
     }
 
 }
