@@ -105,4 +105,5 @@
     <string name="toggle_custom_kiosk">Toggle Custom Kiosk</string>
     <string name="date_time">Date/Time</string>
     <string name="location">Location</string>
+    <string name="NFC">NFC</string>
 </resources>

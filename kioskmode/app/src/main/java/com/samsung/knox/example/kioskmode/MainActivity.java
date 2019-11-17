@@ -455,6 +455,8 @@ public class MainActivity extends AppCompatActivity {
         policy.startGPS(true);
         mUtils.log("GPS started");
 
+        mUtils.log("Android Last Location Captured");
+        // to be done:
         // get Android location
     }
 
@@ -468,7 +470,11 @@ public class MainActivity extends AppCompatActivity {
         policy.startNFC(true);
         mUtils.log("NFC started");
 
-        //allow nfc state change
+        mUtils.log("Identification Verified w/ NFC Reader");
+
+        
+        // to be done:
+        // allow nfc state change
 
     }
 
