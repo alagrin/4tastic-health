@@ -27,6 +27,7 @@ import com.samsung.android.knox.kiosk.KioskSetting;
 import com.samsung.android.knox.license.KnoxEnterpriseLicenseManager;
 import com.samsung.android.knox.location.LatLongPoint;
 import com.samsung.android.knox.location.LocationPolicy;
+import com.samsung.android.knox.nfc.NfcPolicy;
 import com.samsung.knox.example.kioskmode.ui.login.LoginActivity;
 import com.samsung.knox.example.kioskmode.DateTime;
 
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mToggleLogViewBtn;
     private Button mToggleDateTime;
     private Button mToggleLocationBtn;
+    private Button mToggleNFCBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         mToggleLogViewBtn = (Button) findViewById(R.id.toggleLogViewBtn);
         mToggleDateTime = (Button) findViewById(R.id.toggleDateTime);
         mToggleLocationBtn = (Button) findViewById(R.id.toggleLocation);
+        mToggleNFCBtn = (Button) findViewById(R.id.toggleNFC);
         mDeviceAdmin = new ComponentName(MainActivity.this, SampleAdminReceiver.class);
         mDPM = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
         mUtils = new Utils(logView, TAG);
@@ -127,6 +130,10 @@ public class MainActivity extends AppCompatActivity {
         mToggleLocationBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){processLocation();}
+        });
+        mToggleNFCBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){processNFC();}
         });
 
         mSampleKioskReceiver = new SampleKioskReceiver();
@@ -449,8 +456,19 @@ public class MainActivity extends AppCompatActivity {
         mUtils.log("GPS started");
 
         // get Android location
+    }
 
+    public void processNFC(){
+        EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(this.getApplicationContext());
+        NfcPolicy policy = edm.getNfcPolicy();
 
+        policy.allowNFCStateChange(false);
+        mUtils.log("NFC forced on");
+
+        policy.startNFC(true);
+        mUtils.log("NFC started");
+
+        //allow nfc state change
 
     }
 
