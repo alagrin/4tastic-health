@@ -8,9 +8,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.nfc.NdefMessage;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
@@ -68,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
     private Button mToggleDateTime;
     private Button mToggleLocationBtn;
     private Button mToggleNFCBtn;
+
+    private SampleTagReceiver mSampleTagReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,7 +148,16 @@ public class MainActivity extends AppCompatActivity {
         intentFilter.addAction(KioskMode.ACTION_ENABLE_KIOSK_MODE_RESULT);
         intentFilter.addAction(KioskMode.ACTION_DISABLE_KIOSK_MODE_RESULT);
         registerReceiver(mSampleKioskReceiver, intentFilter);
+
+        mSampleTagReceiver = new SampleTagReceiver();
+        Intent nfcIntent = new Intent(this, getClass());
+        mSampleTagReceiver.onReceive(nfcIntent);
+        String action = nfcIntent.getAction();
+        mUtils.log("read NFC Card, logged Event to RunConsole");
+
     }
+
+
 
     /*
     * If Admin is activated, deactivate this app as device administrator with no explanation.
@@ -479,6 +492,7 @@ public class MainActivity extends AppCompatActivity {
 
         // https://developer.android.com/guide/topics/connectivity/nfc/nfc
 
+        //https://code.tutsplus.com/tutorials/reading-nfc-tags-with-android--mobile-17278
         // to be done:
         // allow nfc state change
         NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this);
@@ -489,6 +503,12 @@ public class MainActivity extends AppCompatActivity {
         //Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
         //byte[] b = tag.getId();
         //mUtils.log(tag.toString());
+
+        //https://www.survivingwithandroid.com/android-nfc-app-android-nfc-tutorial/
+
+        //https://www.codexpedia.com/android/android-nfc-read-and-write-example/
+        //https://github.com/codexpedia/android_nfc_read_write
+
     }
 
 }
