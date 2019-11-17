@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 import static com.samsung.android.knox.application.ApplicationPolicy.PERMISSION_POLICY_STATE_GRANT;
 
 /**
@@ -122,6 +123,10 @@ public class MainActivity extends AppCompatActivity {
         mToggleDateTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {processTimeData();}
+        });
+        mToggleLocationBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){processLocation();}
         });
 
         mSampleKioskReceiver = new SampleKioskReceiver();
@@ -434,8 +439,18 @@ public class MainActivity extends AppCompatActivity {
     public void processLocation(){
         EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(this.getApplicationContext());
         LocationPolicy policy = edm.getLocationPolicy();
-        String test = policy.toString();
-        mUtils.log(test);
+
+        //setGPS
+        policy.setGPSStateChangeAllowed(false);
+        mUtils.log("GPS forced on");
+
+        // turn on GPS
+        policy.startGPS(true);
+        mUtils.log("GPS started");
+
+        // get Android location
+
+
 
     }
 
