@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
         Intent nfcIntent = new Intent(this, getClass());
         mSampleTagReceiver.onReceive(nfcIntent);
         String action = nfcIntent.getAction();
-        mUtils.log("read NFC Card, logged Event to RunConsole");
+        mUtils.log("waiting to scan, logged Event to RunConsole");
 
     }
 
