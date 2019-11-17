@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
@@ -472,10 +473,16 @@ public class MainActivity extends AppCompatActivity {
 
         mUtils.log("Identification Verified w/ NFC Reader");
 
-        
+        // sample NFC Code references:
+        // https://medium.com/@ssaurel/create-a-nfc-reader-application-for-android-74cf24f38a6f
+
+        // https://developer.android.com/guide/topics/connectivity/nfc/nfc
+
         // to be done:
         // allow nfc state change
-
+        NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this);
+        String s = adapter.toString();
+        mUtils.log(s);
     }
 
 }
