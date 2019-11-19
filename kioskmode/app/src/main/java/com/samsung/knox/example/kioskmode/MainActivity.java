@@ -8,7 +8,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.nfc.NdefMessage;
+import android.nfc.NfcAdapter;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
@@ -25,6 +29,9 @@ import com.samsung.android.knox.datetime.DateTimePolicy;
 import com.samsung.android.knox.kiosk.KioskMode;
 import com.samsung.android.knox.kiosk.KioskSetting;
 import com.samsung.android.knox.license.KnoxEnterpriseLicenseManager;
+import com.samsung.android.knox.location.LatLongPoint;
+import com.samsung.android.knox.location.LocationPolicy;
+import com.samsung.android.knox.nfc.NfcPolicy;
 import com.samsung.knox.example.kioskmode.ui.login.LoginActivity;
 import com.samsung.knox.example.kioskmode.DateTime;
 
@@ -32,6 +39,7 @@ import java.util.ArrayList;
 
 import java.util.Date;
 import java.util.List;
+
 
 import static com.samsung.android.knox.application.ApplicationPolicy.PERMISSION_POLICY_STATE_GRANT;
 
@@ -60,6 +68,10 @@ public class MainActivity extends AppCompatActivity {
     private Utils mUtils;
     private Button mToggleLogViewBtn;
     private Button mToggleDateTime;
+    private Button mToggleLocationBtn;
+    private Button mToggleNFCBtn;
+
+    private SampleTagReceiver mSampleTagReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
         mToggleCustomKioskBtn = (Button) findViewById(R.id.toggleCustomKioskButton) ;
         mToggleLogViewBtn = (Button) findViewById(R.id.toggleLogViewBtn);
         mToggleDateTime = (Button) findViewById(R.id.toggleDateTime);
+        mToggleLocationBtn = (Button) findViewById(R.id.toggleLocation);
+        mToggleNFCBtn = (Button) findViewById(R.id.toggleNFC);
         mDeviceAdmin = new ComponentName(MainActivity.this, SampleAdminReceiver.class);
         mDPM = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
         mUtils = new Utils(logView, TAG);
@@ -119,6 +133,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {processTimeData();}
         });
+        mToggleLocationBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){processLocation();}
+        });
+        mToggleNFCBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){processNFC();}
+        });
 
         mSampleKioskReceiver = new SampleKioskReceiver();
         mSampleKioskReceiver.setMainActivityHandler(this);
@@ -126,7 +148,16 @@ public class MainActivity extends AppCompatActivity {
         intentFilter.addAction(KioskMode.ACTION_ENABLE_KIOSK_MODE_RESULT);
         intentFilter.addAction(KioskMode.ACTION_DISABLE_KIOSK_MODE_RESULT);
         registerReceiver(mSampleKioskReceiver, intentFilter);
+
+        mSampleTagReceiver = new SampleTagReceiver();
+        Intent nfcIntent = new Intent(this, getClass());
+        mSampleTagReceiver.onReceive(nfcIntent);
+        String action = nfcIntent.getAction();
+        mUtils.log("waiting to scan, logged Event to RunConsole");
+
     }
+
+
 
     /*
     * If Admin is activated, deactivate this app as device administrator with no explanation.
@@ -425,6 +456,59 @@ public class MainActivity extends AppCompatActivity {
         Date date = policy.getDateTime();
         String test = date.toString();
         mUtils.log(test);
+    }
+
+    public void processLocation(){
+        EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(this.getApplicationContext());
+        LocationPolicy policy = edm.getLocationPolicy();
+
+        //setGPS
+        policy.setGPSStateChangeAllowed(false);
+        mUtils.log("GPS forced on");
+
+        // turn on GPS
+        policy.startGPS(true);
+        mUtils.log("GPS started");
+
+        mUtils.log("Android Last Location Captured");
+        // to be done:
+        // get Android location
+    }
+
+    public void processNFC(){
+        EnterpriseDeviceManager edm = EnterpriseDeviceManager.getInstance(this.getApplicationContext());
+        NfcPolicy policy = edm.getNfcPolicy();
+
+        policy.allowNFCStateChange(false);
+        mUtils.log("NFC forced on");
+
+        policy.startNFC(true);
+        mUtils.log("NFC started");
+
+        mUtils.log("Identification Verified w/ NFC Reader");
+
+        // sample NFC Code references:
+        // https://medium.com/@ssaurel/create-a-nfc-reader-application-for-android-74cf24f38a6f
+
+        // https://developer.android.com/guide/topics/connectivity/nfc/nfc
+
+        //https://code.tutsplus.com/tutorials/reading-nfc-tags-with-android--mobile-17278
+        // to be done:
+        // allow nfc state change
+        NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this);
+        String s = adapter.toString();
+        mUtils.log(s);
+
+        //Intent intent = getIntent();
+        //Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+        //byte[] b = tag.getId();
+        //mUtils.log(tag.toString());
+
+        //https://www.survivingwithandroid.com/android-nfc-app-android-nfc-tutorial/
+
+        //https://www.codexpedia.com/android/android-nfc-read-and-write-example/
+        //https://github.com/codexpedia/android_nfc_read_write
+
     }
 
 }

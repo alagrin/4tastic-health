@@ -86,6 +86,24 @@
                 android:layout_alignStart="@id/toggleCustomKioskButton"
                 android:width="200dp"
                 android:text="@string/date_time" />
+            <Button
+                android:id="@+id/toggleLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/toggleDateTime"
+                android:layout_alignStart="@id/toggleDateTime"
+                android:width="200dp"
+                android:text="Location"/>
+
+            <Button
+                android:id="@+id/toggleNFC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/toggleLocation"
+                android:layout_alignStart="@id/toggleLocation"
+                android:width="200dp"
+                android:text="NFC"/>
+
 
         </RelativeLayout>
     </ScrollView>
